@@ -4,6 +4,12 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+plt.rcParams["font.family"] = "Times New Roman"
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.titleweight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
+plt.rcParams["xtick.labelsize"] = 10
+plt.rcParams["ytick.labelsize"] = 10
 
 from eda_common import load_dataset, output_dir
 
@@ -14,12 +20,14 @@ def main() -> None:
 
     # --- 1. Rainfall distribution: raw (shows zero-inflation) ---
     plt.figure(figsize=(9, 5.5))
+    plt.ylim(0, 350000)
+    plt.margins(y=0.10)
     plt.hist(df["BMD_Rainfall"], bins=60, edgecolor="black", alpha=0.8)
     plt.title("Distribution of Daily Rainfall (raw) — 67.8% of days are dry")
     plt.xlabel("Rainfall (mm)")
     plt.ylabel("Frequency")
     plt.tight_layout()
-    plt.savefig(out / "02_hist_rainfall_raw.png", dpi=220)
+    plt.savefig(out / "02_hist_rainfall_raw.png", dpi=600)
     plt.close()
 
     # --- 2. Rainfall distribution: rainy days only, log scale ---
@@ -33,7 +41,7 @@ def main() -> None:
     plt.xlabel("log(1 + Rainfall mm)")
     plt.ylabel("Frequency")
     plt.tight_layout()
-    plt.savefig(out / "02_hist_rainfall_rainy_days_log.png", dpi=220)
+    plt.savefig(out / "02_hist_rainfall_rainy_days_log.png", dpi=600)
     plt.close()
 
     # --- 3. Boxplot of rainfall by Region (readable grouping) ---
@@ -46,7 +54,7 @@ def main() -> None:
     plt.title("Rainfall by Region (outliers excluded from view only, not from data)")
     plt.ylabel("Rainfall (mm)")
     plt.tight_layout()
-    plt.savefig(out / "02_boxplot_rainfall_by_region.png", dpi=220)
+    plt.savefig(out / "02_boxplot_rainfall_by_region.png", dpi=600)
     plt.close()
 
     # --- 4. Weather feature distributions (2x4 grid) ---
@@ -58,7 +66,7 @@ def main() -> None:
     axes.flat[-1].axis("off")  # 7 features in an 8-slot grid
     plt.suptitle("Distribution of Weather Features")
     plt.tight_layout()
-    plt.savefig(out / "02_weather_feature_distributions.png", dpi=200)
+    plt.savefig(out / "02_weather_feature_distributions.png", dpi=600)
     plt.close()
 
     print(f"Univariate charts saved in: {out}")

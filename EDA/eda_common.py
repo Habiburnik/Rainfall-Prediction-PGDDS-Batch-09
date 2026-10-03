@@ -4,7 +4,7 @@ from pathlib import Path
 import pandas as pd
 
 DATA_PATH = Path("Data/Processed/Processed.csv")
-OUTPUT_ROOT = Path("outputs/rainfall")
+OUTPUT_ROOT = Path("outputs/Eda")
 
 # Region grouping - used ONLY for chart readability (34 stations is too
 # many for a clean x-axis). Full station-level detail is preserved in

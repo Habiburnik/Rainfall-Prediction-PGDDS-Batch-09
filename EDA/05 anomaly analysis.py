@@ -7,6 +7,12 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from sklearn.ensemble import IsolationForest
 from sklearn.preprocessing import StandardScaler
+plt.rcParams["font.family"] = "Times New Roman"
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.titleweight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
+plt.rcParams["xtick.labelsize"] = 10
+plt.rcParams["ytick.labelsize"] = 10
 
 from eda_common import load_dataset, output_dir
 
@@ -95,7 +101,7 @@ def main() -> None:
     plt.title("Isolation Forest Multivariate Anomalies")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(out / "05_isolation_forest_anomalies.png", dpi=220)
+    plt.savefig(out / "05_isolation_forest_anomalies.png", dpi=600)
     plt.close()
 
     print("=== ANOMALY SUMMARY ===")

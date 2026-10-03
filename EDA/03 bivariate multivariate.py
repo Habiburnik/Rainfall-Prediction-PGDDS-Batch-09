@@ -5,6 +5,12 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+plt.rcParams["font.family"] = "Times New Roman"
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.titleweight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
+plt.rcParams["xtick.labelsize"] = 10
+plt.rcParams["ytick.labelsize"] = 10
 
 from eda_common import load_dataset, output_dir
 
@@ -27,20 +33,29 @@ def main() -> None:
     plt.title("Humidity vs Rainfall")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(out / "03_scatter_humidity_vs_rainfall.png", dpi=220)
+    plt.savefig(out / "03_scatter_humidity_vs_rainfall.png", dpi=600)
     plt.close()
 
     # --- 2. Rainy-Day rate by Region ---
     region_rate = (
-        df.groupby("Region")["Rainy_Day"].mean().sort_values(ascending=False) * 100
+    df.groupby("Region")["Rainy_Day"].mean().sort_values(ascending=False) * 100
     )
+
     plt.figure(figsize=(8, 5))
-    region_rate.plot(kind="bar", color="steelblue", edgecolor="black")
+
+    region_rate.plot(
+    kind="bar",
+    color="steelblue",
+    edgecolor="black",
+    width=0.35
+    )
+
     plt.ylabel("Rainy-Day Rate (%)")
     plt.title("Percentage of Days with Measurable Rain, by Region")
     plt.xticks(rotation=20, ha="right")
+
     plt.tight_layout()
-    plt.savefig(out / "03_rainy_day_rate_by_region.png", dpi=220)
+    plt.savefig(out / "03_rainy_day_rate_by_region.png", dpi=600)
     plt.close()
 
     # --- 3. Monthly seasonality: rainfall vs temperature (dual axis) ---
@@ -58,7 +73,7 @@ def main() -> None:
     plt.title("Monthly Seasonality: Rainfall vs Temperature")
     ax1.set_xticks(range(1, 13))
     plt.tight_layout()
-    plt.savefig(out / "03_monthly_seasonality_rain_temp.png", dpi=220)
+    plt.savefig(out / "03_monthly_seasonality_rain_temp.png", dpi=600)
     plt.close()
 
     # --- 4. Rainy-Day rate heatmap: Region x Month ---
@@ -71,7 +86,7 @@ def main() -> None:
     plt.xlabel("Month")
     plt.ylabel("Region")
     plt.tight_layout()
-    plt.savefig(out / "03_heatmap_region_month_rainy_rate.png", dpi=220)
+    plt.savefig(out / "03_heatmap_region_month_rainy_rate.png", dpi=600)
     plt.close()
 
     print("Region rainy-day rates:\n", region_rate)

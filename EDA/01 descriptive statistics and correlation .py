@@ -5,8 +5,15 @@ import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 import seaborn as sns
+plt.rcParams["font.family"] = "Times New Roman"
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.titleweight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
+plt.rcParams["xtick.labelsize"] = 10
+plt.rcParams["ytick.labelsize"] = 10
 
 from eda_common import load_dataset, output_dir
+
 
 
 def main() -> None:
@@ -73,7 +80,7 @@ def main() -> None:
     sns.heatmap(pearson, cmap="coolwarm", center=0, annot=False)
     plt.title("Rainfall Dataset — Pearson Correlation Heatmap")
     plt.tight_layout()
-    plt.savefig(out / "01_correlation_heatmap.png", dpi=220)
+    plt.savefig(out / "01_correlation_heatmap.png", dpi=600)
     plt.close()
 
     print("\nTop 5 wettest stations:\n", station_summary.head())

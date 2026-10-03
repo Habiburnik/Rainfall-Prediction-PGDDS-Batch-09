@@ -5,6 +5,12 @@ import numpy as np
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
+plt.rcParams["font.family"] = "Times New Roman"
+plt.rcParams["font.weight"] = "bold"
+plt.rcParams["axes.titleweight"] = "bold"
+plt.rcParams["axes.labelweight"] = "bold"
+plt.rcParams["xtick.labelsize"] = 10
+plt.rcParams["ytick.labelsize"] = 10
 
 from eda_common import load_dataset, output_dir
 
@@ -35,7 +41,7 @@ def main() -> None:
     plt.ylabel("Total Rainfall (mm, all stations)")
     plt.legend()
     plt.tight_layout()
-    plt.savefig(out / "04_national_monthly_trend.png", dpi=220)
+    plt.savefig(out / "04_national_monthly_trend.png", dpi=600)
     plt.close()
 
     # --- 2. Annual national total, for a cleaner long-term view ---
@@ -46,7 +52,7 @@ def main() -> None:
     plt.xlabel("Year")
     plt.ylabel("Total Rainfall (mm, all stations)")
     plt.tight_layout()
-    plt.savefig(out / "04_national_annual_trend.png", dpi=220)
+    plt.savefig(out / "04_national_annual_trend.png", dpi=600)
     plt.close()
 
     if HAS_MK:
